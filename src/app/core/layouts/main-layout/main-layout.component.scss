@@ -1,8 +1,5 @@
 .nav-bar {
   height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 10px 20px 10px 20px;
   background-color: #efefef;
   margin-bottom: 10px;
@@ -24,9 +21,4 @@
   flex-grow: 1;
   height: 100%;
   background-color: #efefef;
-}
-
-.header {
-  font-size: 2rem;
-  font-weight: 500;
 }
