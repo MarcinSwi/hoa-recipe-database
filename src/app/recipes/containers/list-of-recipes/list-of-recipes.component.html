@@ -3,15 +3,15 @@
 </div>
 
 <button mat-button color="accent" class="add-button" routerLink="new-recipe">
-  <mat-icon>add_circle</mat-icon>
+  <mat-icon>add_circle</mat-icon><span class="pl-6">Add recipe</span>
 </button>
-<mat-nav-list *ngIf="data | async as recipes">
+<!-- <mat-nav-list *ngIf="data | async as recipes">
   <mat-list-item *ngFor="let recipe of recipes">
     <a matLine [href]="recipe._id + '/details'">{{ recipe.name }}</a>
     <button
       mat-raised-button
       color="warn"
-      class="space-right"
+      class="mr-6"
       (click)="openDeleteDialog(recipe._id)"
     >
       Delete
@@ -24,4 +24,4 @@
       Edit
     </button>
   </mat-list-item>
-</mat-nav-list>
+</mat-nav-list> -->

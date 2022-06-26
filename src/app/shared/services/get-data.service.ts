@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Recipe } from 'src/app/recipes/model/recipe.interface';
+import { NewRecipe, Recipe } from 'src/app/recipes/model/recipe.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,21 +9,19 @@ export class GetDataService {
   constructor() {}
 
   async getAllRecipes() {
-    return fetch(`https://crudcrud.com/api/${environment.crudeId}/recipes`)
+    return fetch(`https://crudcrud.com/api/${environment.crudeId}/recipe`)
       .then((response) => response.json())
       .then((data) => data);
   }
 
   async getRecipe(id: string) {
-    return fetch(
-      `https://crudcrud.com/api/${environment.crudeId}/recipes/${id}`
-    )
+    return fetch(`https://crudcrud.com/api/${environment.crudeId}/recipe/${id}`)
       .then((response) => response.json())
       .then((data) => data);
   }
 
-  async addRecipe(recipe: Recipe) {
-    return fetch(`https://crudcrud.com/api/${environment.crudeId}/recipes`, {
+  async addRecipe(recipe: NewRecipe) {
+    return fetch(`https://crudcrud.com/api/${environment.crudeId}/recipe`, {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       method: 'POST',
       body: JSON.stringify({
@@ -39,7 +37,7 @@ export class GetDataService {
 
   async editRecipe(recipe: Recipe) {
     return fetch(
-      `https://crudcrud.com/api/${environment.crudeId}/recipes/${recipe._id}`,
+      `https://crudcrud.com/api/${environment.crudeId}/recipe/${recipe._id}`,
       {
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         method: 'PUT',
@@ -55,7 +53,7 @@ export class GetDataService {
 
   async removeRecipe(id: string) {
     return fetch(
-      `https://crudcrud.com/api/${environment.crudeId}/recipes/${id}`,
+      `https://crudcrud.com/api/${environment.crudeId}/recipe/${id}`,
       {
         method: 'DELETE',
       }
