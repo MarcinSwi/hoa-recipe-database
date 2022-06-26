@@ -10,7 +10,10 @@ const routes: Routes = [
     children: [
       {
         path: 'new-recipe',
-        component: NewRecipeComponent,
+        loadChildren: () =>
+          import('./new-recipe/new-recipe.module').then(
+            (m) => m.NewRecipeModule
+          ),
       },
       {
         path: ':recipeId',

@@ -5,9 +5,9 @@ import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../shared/shared.module';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { DetailsComponent } from './containers/details/details.component';
-import { ListRoutingModule } from './recipes-routing.module';
+import { RecipesRoutingModule } from './recipes-routing.module';
 import { EditComponent } from './containers/edit/edit.component';
-import { MatCardModule } from '@angular/material/card';
+import { NewRecipeModule } from '../new-recipe/new-recipe.module';
 
 @NgModule({
   declarations: [
@@ -20,8 +20,8 @@ import { MatCardModule } from '@angular/material/card';
     CommonModule,
     SharedModule,
     MatListModule,
-    ListRoutingModule,
-    MatCardModule,
+    RecipesRoutingModule,
+    NewRecipeModule,
   ],
   exports: [ListOfRecipesComponent],
 })

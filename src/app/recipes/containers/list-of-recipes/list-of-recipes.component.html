@@ -1,17 +1,30 @@
-<div>
-  <input type="text" placeholder="Search for recipe" />
+<mat-form-field class="full-width" appearance="fill">
+  <mat-label>Search for recipe</mat-label>
+  <input
+    matInput
+    type="text"
+    id="search-text"
+    [(ngModel)]="searchText"
+    placeholder="Enter text to search"
+  />
+</mat-form-field>
+
+<div class="nav-buttons">
+  <button mat-button color="accent" class="add-button" (click)="refreshData()">
+    <mat-icon>refresh</mat-icon><span class="pl-6">Refresh recipes</span>
+  </button>
+  <button mat-button color="accent" class="add-button" routerLink="new-recipe">
+    <mat-icon>add_circle</mat-icon><span class="pl-6">Add recipe</span>
+  </button>
 </div>
 
-<button mat-button color="accent" class="add-button" routerLink="new-recipe">
-  <mat-icon>add_circle</mat-icon>
-</button>
 <mat-nav-list *ngIf="data | async as recipes">
-  <mat-list-item *ngFor="let recipe of recipes">
+  <mat-list-item *ngFor="let recipe of recipes | search: searchText">
     <a matLine [href]="recipe._id + '/details'">{{ recipe.name }}</a>
     <button
       mat-raised-button
       color="warn"
-      class="space-right"
+      class="mr-6"
       (click)="openDeleteDialog(recipe._id)"
     >
       Delete
