@@ -17,6 +17,7 @@ import { Recipe } from '../../model/recipe.interface';
 })
 export class ListOfRecipesComponent implements OnInit {
   data: Promise<Recipe[]>;
+  searchText = '';
 
   constructor(
     private matDialog: MatDialog,
@@ -35,9 +36,13 @@ export class ListOfRecipesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.data = this.getDataService.getAllRecipes();
-        this._change.markForCheck();
+        this.refreshData();
       }
     });
+  }
+
+  refreshData() {
+    this.data = this.getDataService.getAllRecipes();
+    this._change.markForCheck();
   }
 }

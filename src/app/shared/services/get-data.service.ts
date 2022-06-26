@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { NewRecipe, Recipe } from 'src/app/recipes/model/recipe.interface';
 import { environment } from 'src/environments/environment';
 
@@ -6,7 +7,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class GetDataService {
-  constructor() {}
+  constructor(private _snackBar: MatSnackBar) {}
 
   async getAllRecipes() {
     return fetch(`https://crudcrud.com/api/${environment.crudeId}/recipe`)
@@ -32,9 +33,11 @@ export class GetDataService {
         description: recipe.description,
         ingredients: recipe.ingredients,
       }),
-    })
-      .then((response) => response.json())
-      .then((data) => data);
+    }).then((response) =>
+      response.ok
+        ? this._snackBar.open('Recipe has been added!', 'Dismiss', {})
+        : this._snackBar.open('There something goes wrong :(', 'Dismiss', {})
+    );
   }
 
   async editRecipe(recipe: Recipe) {
@@ -50,9 +53,11 @@ export class GetDataService {
           ingredients: recipe.ingredients,
         }),
       }
+    ).then((response) =>
+      response.ok
+        ? this._snackBar.open('Recipe has been updated!', 'Dismiss', {})
+        : this._snackBar.open('There something goes wrong :(', 'Dismiss', {})
     );
-
-    // .then((response) => console.log(response));
   }
 
   async removeRecipe(id: string) {
@@ -61,7 +66,10 @@ export class GetDataService {
       {
         method: 'DELETE',
       }
+    ).then((response) =>
+      response.ok
+        ? this._snackBar.open('Recipe has been deleted!', 'Dismiss', {})
+        : this._snackBar.open('There something goes wrong :(', 'Dismiss', {})
     );
-    // .then((response) => console.log(response));
   }
 }
