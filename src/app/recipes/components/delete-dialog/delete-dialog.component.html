@@ -4,7 +4,12 @@
 >
 <mat-dialog-actions>
   <button mat-raised-button color="primary" mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="warn" [mat-dialog-close]="true">
+  <button
+    mat-raised-button
+    color="warn"
+    [mat-dialog-close]="true"
+    (click)="deleteRecipe()"
+  >
     Delete
   </button>
 </mat-dialog-actions>

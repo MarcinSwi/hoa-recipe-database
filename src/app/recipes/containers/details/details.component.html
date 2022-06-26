@@ -1,1 +1,36 @@
-<p>details works!</p>
+<mat-card *ngIf="data | async as recipe">
+  <mat-card-title class="justify-between">
+    <div>{{ recipe.name }}</div>
+    <div>
+      <button
+        mat-raised-button
+        color="warn"
+        class="space-right"
+        (click)="openDeleteDialog(recipe._id)"
+      >
+        Delete
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="recipe._id + '/edit'"
+      >
+        Edit
+      </button>
+    </div>
+  </mat-card-title>
+  <mat-card-content>
+    <h1>Preparation time</h1>
+    <p class="space-left">
+      {{ recipe.preparationTimeInMinutes | preparationTime }}
+    </p>
+    <h1 class="section-space">Preparation</h1>
+    <p class="space-left">{{ recipe.description }}</p>
+    <h1 class="section-space">Ingredients</h1>
+    <mat-list>
+      <mat-list-item *ngFor="let ing of recipe.ingredients">
+        {{ ing.quantity }} {{ ing.name }}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
