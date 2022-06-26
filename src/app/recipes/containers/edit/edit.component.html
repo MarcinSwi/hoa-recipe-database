@@ -1,3 +1,3 @@
-<!-- <ng-container *ngIf="data | async as recipe"> -->
-<app-recipe-form [form]="form" [recipeId]="recipeId"></app-recipe-form>
-<!-- </ng-container> -->
+<ng-container *ngIf="data | async">
+  <app-recipe-form [form]="form" [recipeId]="recipeId"></app-recipe-form>
+</ng-container>

@@ -11,7 +11,9 @@ export class GetDataService {
   async getAllRecipes() {
     return fetch(`https://crudcrud.com/api/${environment.crudeId}/recipe`)
       .then((response) => response.json())
-      .then((data) => data);
+      .then((data) => {
+        return data;
+      });
   }
 
   async getRecipe(id: string) {
@@ -48,7 +50,9 @@ export class GetDataService {
           ingredients: recipe.ingredients,
         }),
       }
-    ).then((response) => console.log(response));
+    );
+
+    // .then((response) => console.log(response));
   }
 
   async removeRecipe(id: string) {
@@ -57,6 +61,7 @@ export class GetDataService {
       {
         method: 'DELETE',
       }
-    ).then((response) => console.log(response));
+    );
+    // .then((response) => console.log(response));
   }
 }

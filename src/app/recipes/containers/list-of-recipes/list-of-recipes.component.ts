@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GetDataService } from 'src/app/shared/services/get-data.service';
 import { DeleteDialogComponent } from '../../components/delete-dialog/delete-dialog.component';
@@ -15,14 +20,24 @@ export class ListOfRecipesComponent implements OnInit {
 
   constructor(
     private matDialog: MatDialog,
-    private getDataService: GetDataService
+    private getDataService: GetDataService,
+    private _change: ChangeDetectorRef
   ) {
     this.data = this.getDataService.getAllRecipes();
   }
 
-  openDeleteDialog(id: string) {
-    this.matDialog.open(DeleteDialogComponent, { data: { id } });
-  }
-
   ngOnInit(): void {}
+
+  openDeleteDialog(id: string) {
+    const dialogRef = this.matDialog.open(DeleteDialogComponent, {
+      data: { id },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.data = this.getDataService.getAllRecipes();
+        this._change.markForCheck();
+      }
+    });
+  }
 }

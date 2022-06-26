@@ -11,7 +11,7 @@ import { Recipe } from '../../model/recipe.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditComponent implements OnInit {
-  // data: Promise<Recipe>;
+  data: Promise<Recipe>;
   form!: RecipeForm;
   recipeId: string;
 
@@ -20,17 +20,8 @@ export class EditComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.recipeId = this.activatedRoute.snapshot.params['recipeId'];
-
-    // this.data = this.getDataService.getRecipe(recipeId);
-
-    // this.data.then((data) => (this.form = new RecipeForm(data)));
-
-    this.form = new RecipeForm({
-      name: 'qwdqwd',
-      preparationTimeInMinutes: 90,
-      description: 'qwdqwdqdw',
-      ingredients: [{ name: 'asdas', quantity: '12 szt' }],
-    });
+    this.data = this.getDataService.getRecipe(this.recipeId);
+    this.data.then((data) => (this.form = new RecipeForm(data)));
   }
 
   save() {}
