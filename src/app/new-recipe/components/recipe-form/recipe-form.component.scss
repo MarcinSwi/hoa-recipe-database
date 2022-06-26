@@ -6,7 +6,7 @@
   display: flex;
   justify-content: end;
 }
-.grid-2-column {
+.grid-column {
   display: grid;
   grid-template-columns: repeat(15, minmax(0, 1fr));
   gap: 10px;
