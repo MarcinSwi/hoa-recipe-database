@@ -5,8 +5,9 @@ import { MatListModule } from '@angular/material/list';
 import { SharedModule } from '../shared/shared.module';
 import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
 import { DetailsComponent } from './containers/details/details.component';
-import { ListRoutingModule } from './recipes-routing.module';
+import { RecipesRoutingModule } from './recipes-routing.module';
 import { EditComponent } from './containers/edit/edit.component';
+import { NewRecipeModule } from '../new-recipe/new-recipe.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,13 @@ import { EditComponent } from './containers/edit/edit.component';
     DetailsComponent,
     EditComponent,
   ],
-  imports: [CommonModule, SharedModule, MatListModule, ListRoutingModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatListModule,
+    RecipesRoutingModule,
+    NewRecipeModule,
+  ],
   exports: [ListOfRecipesComponent],
 })
 export class RecipesModule {}
