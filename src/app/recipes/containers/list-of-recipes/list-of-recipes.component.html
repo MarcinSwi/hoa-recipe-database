@@ -1,0 +1,27 @@
+<div>
+  <input type="text" placeholder="Search for recipe" />
+</div>
+
+<button mat-button color="accent" class="add-button" routerLink="new-recipe">
+  <mat-icon>add_circle</mat-icon>
+</button>
+<mat-nav-list *ngIf="data | async as recipes">
+  <mat-list-item *ngFor="let recipe of recipes">
+    <a matLine [href]="recipe._id + '/details'">{{ recipe.name }}</a>
+    <button
+      mat-raised-button
+      color="warn"
+      class="space-right"
+      (click)="openDeleteDialog(recipe._id)"
+    >
+      Delete
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      [routerLink]="recipe._id + '/edit'"
+    >
+      Edit
+    </button>
+  </mat-list-item>
+</mat-nav-list>
